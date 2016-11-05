@@ -1,7 +1,10 @@
 'use strict';
 angular.module('wnet', [
     'ngRoute',
-    'wnet.login'
+    'ngStorage',
+    'wnet.login',
+    'wnet.auth',
+    'wnet.configuration'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
