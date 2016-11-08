@@ -1,5 +1,5 @@
 angular.module('wnet.auth', []).service('authService',
-    function ($location, $http, $sessionStorage) {
+    function ($location, $http, $sessionStorage, configurationService) {
         var redirectToHome = false;
         this.authenticate = function (credentials) {
             redirectToHome = true;
