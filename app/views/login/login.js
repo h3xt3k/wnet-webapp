@@ -9,11 +9,14 @@ angular.module('wnet.login', [])
         });
     }])
 
-    .controller('loginController', function ($scope, authService) {
+    .controller('loginController', function ($scope, authService, $location) {
         $scope.user = {};
         $scope.login = function () {
-            authService.authenticate();
+            authService.authenticate().then(function () {
+                if (authService.isAuthenticated()) {
+                    $location.path("/home");
+                }
+            });
+
         }
-
-
     });

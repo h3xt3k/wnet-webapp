@@ -2,7 +2,6 @@ angular.module('wnet.auth', []).service('authService',
     function ($location, $http, $sessionStorage, configurationService) {
         var redirectToHome = false;
         this.authenticate = function (credentials) {
-            redirectToHome = true;
             var headers = credentials ? {
                 authorization: "Basic "
                 + btoa(credentials.username + ":" + credentials.password)
@@ -12,7 +11,7 @@ angular.module('wnet.auth', []).service('authService',
 
         };
         this.updateUser = function () {
-            return $http.get(configurationService.API + "contact/all", {headers: $sessionStorage.headers}).then(function (response) {
+            return $http.get(configurationService.USER_AUTH, {headers: $sessionStorage.headers}).then(function (response) {
                 if (response.data.authenticated) {
                     $sessionStorage.user = response.data.user;
                     $sessionStorage.authenticated = true;
@@ -29,4 +28,7 @@ angular.module('wnet.auth', []).service('authService',
                 alert('go away!')
             });
         };
+        this.isAuthenticated = function () {
+            return redirectToHome;
+        }
     });

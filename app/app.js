@@ -5,8 +5,11 @@ angular.module('wnet', [
     'wnet.login',
     'wnet.auth',
     'wnet.configuration'
-]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-
-    $routeProvider.otherwise({redirectTo: '/login'});
-}]);
+]).config(function ($httpProvider, $locationProvider) {
+    $locationProvider.hashPrefix("!");
+    $locationProvider.html5Mode(false);
+    $httpProvider.defaults.headers.common = {};
+    // $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
+});
